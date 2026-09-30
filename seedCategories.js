@@ -16,9 +16,12 @@ const categories = [
 
 const seedDB = async () => {
   try {
-    const dbUrl = process.env.DB_URL;
+    const dbUrl =
+      process.env.DB_URL ||
+      process.env.MONGODB_URI ||
+      process.env.MONGO_URI;
     if (!dbUrl) {
-      console.error("DB_URL is missing in .env");
+      console.error("DB_URL or MONGODB_URI is missing in .env");
       process.exit(1);
     }
 
